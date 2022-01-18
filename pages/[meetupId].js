@@ -2,7 +2,7 @@ import React from "react";
 import MeetUpDetail from "../components/meetups/MeetUpDetail";
 import { MongoClient, ObjectId } from "mongodb";
 import Head from "next/head";
-
+ 
 function MeetUpDetails(props) {
   console.log("PROPS", props);
   return (
@@ -42,7 +42,9 @@ export async function getStaticPaths() {
   return {
     // if false ur paths contains all supported meetUpId value
     // false will show 404 if page not found
-    fallback: false,
+    // 'blocking': list of paths given might not be 
+    // exhaustive there might be more valid pages
+    fallback: 'blocking',
 
     paths: meetups.map((meetup) => ({
       params: {
